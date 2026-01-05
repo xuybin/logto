@@ -12,7 +12,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "copy:apidocs": "rsync -a -m --include '*/' --include '*.openapi.json' --exclude '*' src/routes/ build/routes/",
+    "copy:apidocs":"node -e \"const { copyFileSync, existsSync, mkdirSync, readdirSync } = require('fs'); const { join } = require('path'); function copyOpenApiJson(srcDir, destDir) { if (!existsSync(destDir)) mkdirSync(destDir, { recursive: true }); const items = readdirSync(srcDir); for (const item of items) { const srcPath = join(srcDir, item); const destPath = join(destDir, item); const stat = require('fs').statSync(srcPath); if (stat.isDirectory()) { copyOpenApiJson(srcPath, destPath); } else if (item.endsWith('.openapi.json')) { copyFileSync(srcPath, destPath); } } } copyOpenApiJson('src/routes/', 'build/routes/');\"",
     "check": "tsc --noEmit",
     "build": "tsup",
     "build:test": "rm -rf build/ && tsc -p tsconfig.test.json --sourcemap && pnpm run copy:apidocs",

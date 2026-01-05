@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "pnpm:devPreinstall": "cd packages/connectors && node templates/sync-preset.js",
-    "prepare": "if test \"$NODE_ENV\" != \"production\" && test \"$CI\" != \"true\" ; then husky ; fi",
+    "prepare11": "if test \"$NODE_ENV\" != \"production\" && test \"$CI\" != \"true\" ; then husky ; fi",
     "prepack": "pnpm -r prepack",
     "dev": "pnpm -r prepack && pnpm start:dev",
     "dev:cloud": "IS_CLOUD=1 CONSOLE_PUBLIC_URL=/ pnpm dev",

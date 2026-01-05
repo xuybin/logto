@@ -43,6 +43,10 @@ const buildConfig = (mode: string): UserConfig => ({
   resolve: {
     alias: [
       {
+        find: /^@\//,
+        replacement: `${experienceSrcPath}/`,
+      },
+      {
         find: /^@ac\//,
         replacement: `${accountCenterSrcPath}/`,
       },
